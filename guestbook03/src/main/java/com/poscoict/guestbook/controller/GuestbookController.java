@@ -19,7 +19,7 @@ public class GuestbookController {
 	
 	@RequestMapping("")
 	public String index(Model model) {
-		List<GuestbookVo> list = new GuestbookRepository().findAll();
+		List<GuestbookVo> list = guestbookRepository.findAll();
 		model.addAttribute("list", list);
 		
 		return "/WEB-INF/views/index.jsp";
@@ -27,7 +27,7 @@ public class GuestbookController {
 	
 	@RequestMapping("/add")
 	public String add(GuestbookVo vo) {
-		new GuestbookRepository().insert(vo);
+		guestbookRepository.insert(vo);
 		return "redirect:/";
 	}
 	
@@ -40,7 +40,7 @@ public class GuestbookController {
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
 	public String delete(@RequestParam(value="no", required=true, defaultValue="0") Integer no,
 			             @RequestParam(value="password", required=true, defaultValue="") String password) {
-		new GuestbookRepository().delete(no, password);
+		guestbookRepository.delete(no, password);
 		return "redirect:/";
 	}
 }
