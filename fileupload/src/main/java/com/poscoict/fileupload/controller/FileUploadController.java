@@ -28,9 +28,8 @@ public class FileUploadController {
 		System.out.println("email : " + email);
 
 		String url = fileUploadService.restore(multipartFile);
-		
-		
 		model.addAttribute("url", url);
+		
 		return "result";
 	}
 	
