@@ -56,7 +56,7 @@ public class FileUploadService {
 		filename += calendar.get(calendar.MINUTE);
 		filename += calendar.get(calendar.SECOND);
 		filename += calendar.get(calendar.MILLISECOND);
-		filename += ("." + extName);
+		filename += extName;
 		
 		return filename;
 	}
