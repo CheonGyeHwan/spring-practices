@@ -13,5 +13,31 @@
         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
         
         <bean id="user1" class="com.poscoict.container.user.User1"/>
-   
+        
+        <!-- 기본 생성자로 빈 생성 -->
+        <bean id="user" name="usr" class="com.poscoict.container.user.User"/>
+        
+        <!-- 파라미터 1개인 생성자로 빈 생성 -->
+        <bean id="user2" class="com.poscoict.container.user.User">
+        	<constructor-arg value="둘리"/>
+        </bean>
+        
+        <!-- 파라미터 2개인 생성자로 빈 생성1 -->
+        <bean id="user3" class="com.poscoict.container.user.User">
+        	<constructor-arg value="3"/>
+        	<constructor-arg value="마이콜"/>
+        </bean>
+
+        <!-- 파라미터 2개인 생성자로 빈 생성2 -->
+        <bean id="user4" class="com.poscoict.container.user.User">
+        	<constructor-arg index="1" value="또치"/>
+        	<constructor-arg index="0" value="4"/>
+        </bean>
+        
+        <!-- setter 사용하기 -->
+		<bean id="user5" class="com.poscoict.container.user.User">
+        	<property name="no" value="5"/>
+        	<property name="name" value="도우너"/>
+        </bean>
+        
 </beans>
