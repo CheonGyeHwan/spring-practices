@@ -54,10 +54,17 @@ public class XmlConfigTest {
 		user = (User)ac.getBean("user4");
 		System.out.println(user);
 		
-		// setter를 사용한 빈 가져오기
+		// setter를 사용한 빈 가져오기1
 		user = (User)ac.getBean("user5");
 		System.out.println(user);
 		
+		// setter를 사용한 빈 가져오기2(DI)
+		user = (User)ac.getBean("user6");
+		System.out.println(user);
+		
+		// setter를 사용한 빈 가져오기3(List Property)
+		user = (User)ac.getBean("user7");
+		System.out.println(user);		
 	}
 	
 	// XML Auto Configuration(Annotation Scanning)
