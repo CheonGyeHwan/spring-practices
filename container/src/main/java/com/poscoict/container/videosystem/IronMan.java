@@ -5,7 +5,7 @@ public class IronMan implements DigitalVideoDisc {
 	private String title = "IronMan";
 
 	public void play() {
-
+		System.out.println("Playing Movie " + studio + "'s " + title);
 	}
 
 }

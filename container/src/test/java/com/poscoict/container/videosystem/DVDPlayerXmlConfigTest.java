@@ -1,5 +1,6 @@
 package com.poscoict.container.videosystem;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -51,8 +52,36 @@ public class DVDPlayerXmlConfigTest {
 	@Autowired
 	private DigitalVideoDisc dvd8;
 	
+	@Qualifier("avengersExpansionEdition2")
+	@Autowired
+	private DigitalVideoDisc dvd9;
+	
+	@Qualifier("avengersExpansionEdition3")
+	@Autowired
+	private DigitalVideoDisc dvd10;
+	
 	@Autowired
 	private DVDPack dvdPack;
+	
+	@Qualifier("dvdPlayer1")
+	@Autowired
+	private DVDPlayer dvdPlayer1;
+	
+	@Qualifier("dvdPlayer2")
+	@Autowired
+	private DVDPlayer dvdPlayer2;
+	
+	@Qualifier("dvdPlayer3")
+	@Autowired
+	private DVDPlayer dvdPlayer3;
+	
+	@Qualifier("dvdPlayer4")
+	@Autowired
+	private DVDPlayer dvdPlayer4;
+	
+	@Qualifier("dvdPlayer5")
+	@Autowired
+	private DVDPlayer dvdPlayer5;
 	
 	@Ignore
 	@Test
@@ -96,8 +125,48 @@ public class DVDPlayerXmlConfigTest {
 	}
 	
 	@Test
+	public void testDvd9() {
+		assertNotNull(dvd9);
+	}
+	
+	@Test
+	public void testDvd10() {
+		assertNotNull(dvd10);
+	}
+	
+	@Test
 	public void testDvdPack() {
 		assertNotNull(dvdPack);
+	}
+	
+	@Test
+	public void testPlay1() {
+		dvdPlayer1.play();
+		assertEquals("Playing Movie MARVEL's IronMan", systemOutRule.getLog().replace("\r\n", "").replace("\n", ""));
+	}
+	
+	@Test
+	public void testPlay2() {
+		dvdPlayer2.play();
+		assertEquals("Playing Movie MARVEL's IronMan", systemOutRule.getLog().replace("\r\n", "").replace("\n", ""));
+	}
+	
+	@Test
+	public void testPlay3() {
+		dvdPlayer3.play();
+		assertEquals("Playing Movie MARVEL's IronMan", systemOutRule.getLog().replace("\r\n", "").replace("\n", ""));
+	}
+	
+	@Test
+	public void testPlay4() {
+		dvdPlayer4.play();
+		assertEquals("Playing Movie MARVEL's IronMan", systemOutRule.getLog().replace("\r\n", "").replace("\n", ""));
+	}
+	
+	@Test
+	public void testPlay5() {
+		dvdPlayer5.play();
+		assertEquals("Playing Movie MARVEL's IronMan", systemOutRule.getLog().replace("\r\n", "").replace("\n", ""));
 	}
 	
 }

@@ -4,6 +4,7 @@
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:c="http://www.springframework.org/schema/c"
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
@@ -54,7 +55,7 @@
 				<value>Chris Evans</value>
 			</list>
 		</constructor-arg>
-	</bean>	
+	</bean>
 	
 	<!-- 08. 빈 생성 생성자 Wiring Collection -->
 	<bean id="avengersTriplePack" class="com.poscoict.container.videosystem.DVDPack">
@@ -68,11 +69,50 @@
 		</constructor-arg>
 	</bean>	
 	
-	<!-- 09. 빈 생성 프로퍼티 사용1(기본 생성자) -->
+	<!-- 09. 빈 생성 프로퍼티 사용1 -->
 	<bean id="avengersExpansionEdition1" class="com.poscoict.container.videosystem.BlankDisc">
 		<property name="title" value="Avengers Expansion Edition1"/>
 		<property name="studio" value="MARVEL"/>
 	</bean>
+	
+	<!-- 10. 빈 생성 프로퍼티 사용2 -->
+	<bean id="avengersExpansionEdition2" class="com.poscoict.container.videosystem.BlankDisc" 
+	  p:title="Avengers Expansion Edition2"
+	  p:studio="MARVEL"/>
+	  
+	<!-- 11. 빈 생성 프로퍼티 사용3 -->
+	<util:list id="actorList">
+		<value>Robert Downey jr</value>
+		<value>Scalette</value>
+		<value>Chris Evans</value>
+	</util:list>
+	
+	<bean id="avengersExpansionEdition3" class="com.poscoict.container.videosystem.BlankDisc"
+	  p:title="Avengers Expansion Edition3"
+	  p:studio="MARVEL"
+	  p:actors-ref="actorList"/>
+	
+	<!-- 12. 빈 주입(Wiring) 생성자1 -->
+	<bean id="dvdPlayer1" class="com.poscoict.container.videosystem.DVDPlayer">
+		<constructor-arg ref="IronMan"/>
+	</bean>
+	
+	<!-- 13. 빈 주입(Wiring) 생성자2 : c-namespace의 argument name을 사용하는 방법, Spring 3.x 지원 -->
+	<bean id="dvdPlayer2" class="com.poscoict.container.videosystem.DVDPlayer"
+	   c:dvd-ref="IronMan"/>
+	
+	<!-- 14. 빈 주입(Wiring) 생성자2 : c-namespace의 argument index를 사용하는 방법, Spring 3.x 지원 -->
+	<bean id="dvdPlayer3" class="com.poscoict.container.videosystem.DVDPlayer"
+	   c:_0-ref="IronMan"/>
+	   
+	<!-- 15. 빈 주입(Wiring) 프로퍼티1 -->
+	<bean id="dvdPlayer4" class="com.poscoict.container.videosystem.DVDPlayer">
+		<property name="dvd" ref="IronMan"/>
+	</bean>
+	
+	<!-- 16. 빈 주입(Wiring) 프로퍼티2 : p-namespace 사용 -->
+	<bean id="dvdPlayer5" class="com.poscoict.container.videosystem.DVDPlayer"
+	  p:dvd-ref="IronMan"/>
 	
 	
 </beans>
