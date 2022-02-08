@@ -1,42 +1,41 @@
 package com.poscoict.container.videosystem;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import com.poscoict.container.config.videosystem.DvdPlayerConfig;
-
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=DvdPlayerConfig.class)
-public class DvdPlayerJavaConfigTest {
+@ContextConfiguration(locations=("classpath:com/poscoict/container/config/videosystem/DVDPlayerConfig.xml"))
+public class DVDPlayerXmlConfigTest {
 	@Rule
 	public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
 	
+	// @Autowired
+	// 예외 발생
+	// Explicit XML Bean 설정(Avengers)에서는 ID를 자동 부여하지 않는다.
+	// 따라서 @Qualifier를 사용할 수 없다.
+	private DigitalVideoDisc dvd1;
+	
+	@Qualifier("IronMan")
 	@Autowired
-	private DigitalVideoDisc dvd;	
+	private DigitalVideoDisc dvd2;
 	
-	@Autowired
-	private DVDPlayer dvdPlayer;
-	
+	@Ignore
 	@Test
-	public void testDVDNotNull() {
-		assertNotNull(dvd);
+	public void testDvd1() {
+		assertNotNull(dvd1);
 	}
 	
 	@Test
-	public void testDVDPlayerNotNull() {
-		assertNotNull(dvdPlayer);
+	public void testDvd2() {
+		assertNotNull(dvd2);
 	}
 	
-	@Test
-	public void testPlay() {
-		dvdPlayer.play();
-		assertEquals("Playing Movie MARVEL's Avengers", systemOutRule.getLog().replace("\r\n", "").replace("\n", ""));
-	}
 }
